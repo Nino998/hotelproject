@@ -1,0 +1,52 @@
+<div class="booked-wrapper">
+  @if (bookings().length > 0) {
+    <div class="table-responsive">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>Room</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (b of bookings(); track b.id) {
+            <tr>
+              <td data-label="Room" class="bold-cell">
+                {{ roomName(b.roomID) }}
+              </td>
+              <td data-label="Customer">
+                {{ b.customerName }}
+              </td>
+              <td data-label="Phone">
+                {{ b.customerPhone }}
+              </td>
+              <td data-label="Check in">
+                {{ b.checkInDate | date:'yyyy-MM-dd' }}
+              </td>
+              <td data-label="Check out">
+                {{ b.checkOutDate | date:'yyyy-MM-dd' }}
+              </td>
+              <td data-label="Total Price" class="bold-cell">
+                {{ b.totalPrice }}€
+              </td>
+              <td data-label="Actions">
+                <button type="button" class="cancel-btn" (click)="cancel(b.id)">
+                  CANCEL BOOKING
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="state-box">
+      <p>დაჯავშნილი ოთახები არ მოიძებნა.</p>
+    </div>
+  }
+</div>

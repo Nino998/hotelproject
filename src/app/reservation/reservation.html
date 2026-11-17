@@ -1,0 +1,123 @@
+<div class="reservation-container">
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  } @else if (room(); as r) {
+    
+    <div class="reservation-content">
+      
+    
+      <div class="gallery-section">
+        @if (r.images && r.images.length > 0) {
+          <img 
+            class="main-image" 
+            [src]="url(r.images[current()]?.source || '')" 
+            [alt]="r.name" 
+            referrerpolicy="no-referrer"
+            (error)="markFailed(current())"
+          />
+          <div class="thumbnails">
+            @for (img of r.images; track img.id; let i = $index) {
+              @if (!failed().includes(i)) {
+                <img 
+                  class="thumb" 
+                  [class.active]="current() === i"
+                  [src]="url(img.source)" 
+                  (click)="current.set(i)"
+                  referrerpolicy="no-referrer"
+                  (error)="markFailed(i)"
+                />
+              }
+            }
+          </div>
+        } @else {
+          <img class="main-image" src="https://placehold.co/800x400?text=No+Image" alt="No image" />
+        }
+      </div>
+
+    
+      <div class="info-section">
+        <h2>{{ r.name }}</h2>
+        <div class="price">€ {{ r.pricePerNight }} / night</div>
+        <p class="description">{{ r.description }}</p>
+
+        <!-- ფორმის შეცდომების ჩვენება -->
+        @if (formError()) {
+          <div class="form-error-msg" style="color: #b33939; background: #fdf0f0; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 13px;">
+            {{ formError() }}
+          </div>
+        }
+
+        @if (!isLoggedIn()) {
+          <div class="form">
+            <h3>გთხოვთ გაიაროთ რეგისტრაცია</h3>
+            
+            <div class="auth-toggle">
+              <button 
+                type="button" 
+                class="toggle-btn" 
+                [class.active]="form.isRegistering" 
+                (click)="form.isRegistering = true">
+                რეგისტრაცია
+              </button>
+              <button 
+                type="button" 
+                class="toggle-btn" 
+                [class.active]="!form.isRegistering" 
+                (click)="form.isRegistering = false">
+                შესვლა
+              </button>
+            </div>
+
+            <label>Full Name
+              <input type="text" [(ngModel)]="form.customerName" name="customerName" placeholder="Enter your name" required />
+            </label>
+
+            <label>Phone Number
+              <input type="text" [(ngModel)]="form.customerPhone" name="customerPhone" placeholder="Enter your phone" required />
+            </label>
+
+            <label>Password
+              <input type="password" [(ngModel)]="form.password" name="password" placeholder="Enter your password" required />
+            </label>
+
+            <button class="book" type="button" (click)="authenticate()">
+              {{ form.isRegistering ? 'REGISTER' : 'LOGIN' }}
+            </button>
+          </div>
+        } 
+        
+      
+        @else {
+          <form class="form" (ngSubmit)="book()">
+            <div class="welcome-msg">
+              მოგესალმებით, <b>{{ form.customerName }}</b>! ახლა შეგიძლიათ აირჩიოთ თარიღები.
+            </div>
+
+            <label>Check-in Date
+              <input type="date" [(ngModel)]="form.checkIn" name="checkIn" required />
+            </label>
+
+            <label>Check-out Date
+              <input type="date" [(ngModel)]="form.checkOut" name="checkOut" required />
+            </label>
+
+            @if (nights() > 0) {
+              <div class="summary">
+                Total Nights: <b>{{ nights() }}</b> | Total Price: <b>€ {{ total() }}</b>
+              </div>
+            }
+
+            <button class="book" type="submit" [disabled]="saving()">
+              {{ saving() ? 'იჯავშნება...' : 'BOOK NOW' }}
+            </button>
+          </form>
+        }
+
+      </div>
+
+    </div>
+
+  } @else {
+    <div class="error">იტვირთება...</div>
+  }
+</div>

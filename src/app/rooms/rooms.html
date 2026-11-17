@@ -1,0 +1,60 @@
+<div class="content">
+  <h2>Our Rooms & Filters</h2>
+
+
+  <div class="hotel-selector-bar">
+    <label>Select Hotel:
+      <select [value]="selectedHotelId()" (change)="onHotelChange($event)">
+        @for (hotel of hotels(); track hotel.id) {
+          <option [value]="hotel.id">{{ hotel.name }}</option>
+        }
+      </select>
+    </label>
+  </div>
+
+
+  <form class="filters" (ngSubmit)="applyFilter()">
+    <label>Price Per Night
+      <span class="row">
+        <input type="number" [(ngModel)]="filter.priceFrom" name="from" />
+        <input type="number" [(ngModel)]="filter.priceTo" name="to" />
+      </span>
+    </label>
+
+    <label>Room Type
+      <select [(ngModel)]="filter.roomTypeId" name="type">
+        @for (t of roomTypes; track t.id) {
+          <option [ngValue]="t.id">{{ t.name }}</option>
+        }
+      </select>
+    </label>
+
+    <label>Check-in
+      <input type="date" [(ngModel)]="filter.checkIn" name="in" />
+    </label>
+
+    <label>Check-out
+      <input type="date" [(ngModel)]="filter.checkOut" name="out" />
+    </label>
+
+    <label>Guests
+      <input type="number" min="1" [(ngModel)]="filter.maximumGuests" name="guests" />
+    </label>
+
+    <div class="actions">
+      <button class="filter-btn" type="submit">APPLY FILTER</button>
+      <button class="filter-btn reset-btn" type="button" (click)="reset()">RESET</button>
+    </div>
+  </form>
+
+
+  <div class="rooms">
+    @for (room of rooms(); track room.id) {
+      <app-room-card [room]="room" />
+    } @empty {
+      <p class="no-rooms">ოთახები ვერ მოიძებნა</p>
+    }
+  </div>
+</div>
+
+

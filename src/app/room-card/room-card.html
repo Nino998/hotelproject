@@ -1,0 +1,22 @@
+<div class="room">
+  <div class="image-container">
+    <img
+      [src]="getRoomImage()"
+      [alt]="room().name"
+      referrerpolicy="no-referrer"
+      (error)="onImgError($event)"
+    />
+    <a class="book-btn" [routerLink]="['/reservation', room().id]">Book Now</a>
+  </div>
+  
+  <div class="info">
+    <div>
+      <h3>{{ room().name }}</h3>
+      <small>Guests: {{ room().maximumGuests }}</small>
+    </div>
+    <div class="price">
+      <b>€ {{ room().pricePerNight }}</b><br />
+      <small>a night</small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'good';
+  src: url('/fonts/Arima-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'bad';
+  src: url('/fonts/DonegalOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'nice';
+  src: url('/fonts/Tinos-Regular.ttf') format('truetype');
+}

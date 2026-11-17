@@ -1,0 +1,65 @@
+
+<section class="hero">
+  <h1>☆☆☆☆☆ Five Star Hotels ☆☆☆☆☆</h1>
+  <p>And we like to keep it that way!</p>
+  <a class="hero-btn" routerLink="/rooms">Rooms</a>
+</section>
+
+
+<section class="content">
+  <h2>Select a Hotel</h2>
+  
+  
+  <div class="hotels-grid">
+    @for (hotel of hotels(); track hotel.id) {
+      <div class="hotel-card" (click)="selectHotel(hotel.id)">
+        <img [src]="hotel.featuredImage" [alt]="hotel.name" referrerpolicy="no-referrer" />
+        <h3>{{ hotel.name }}</h3>
+      </div>
+    }
+  </div>
+
+
+  <section class="usp-section">
+    <div class="usp-container">
+      
+      <div class="usp-item">
+        <div class="usp-circle">
+          <span class="usp-icon">☕</span>
+        </div>
+        <h3>Beverages included</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-circle">
+          <span class="usp-icon">💳</span>
+        </div>
+        <h3>Stay First, Pay After!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-circle">
+          <span class="usp-icon">🍽️</span>
+        </div>
+        <h3>24 Hour Restaurant</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+
+      <div class="usp-item">
+        <div class="usp-circle">
+          <span class="usp-icon">💆‍♀️</span>
+        </div>
+        <h3>Spa Included!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+
+    </div>
+  </section>
+  
+</section>

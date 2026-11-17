@@ -1,0 +1,125 @@
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 16px;
+}
+
+.hotel-selector-bar {
+  margin-bottom: 25px;
+  background: #ffffff;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.hotel-selector-bar label {
+  font-weight: 600;
+  color: #555555;
+}
+
+.hotel-selector-bar select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+  background: #fff;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  padding: 20px;
+  margin-bottom: 30px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #555555;
+  font-family: bad;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: nice;
+}
+
+.row { 
+  display: flex; 
+  gap: 6px; 
+}
+
+.row input { 
+  width: 80px; 
+}
+
+.actions { 
+  display: flex; 
+  gap: 8px; 
+}
+
+
+.filter-btn {
+  background: #d4b895;
+  color: #ffffff;
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: bad;
+  transition: background 0.2s;
+}
+
+.filter-btn:hover {
+  background: #c5a880;
+}
+
+.reset-btn {
+  background: #999999;
+}
+
+.reset-btn:hover {
+  background: #888888;
+}
+
+.rooms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+
+.rooms app-room-card {
+  display: flex;
+  justify-content: center;
+}
+
+.no-rooms {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #777777;
+  font-size: 18px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
